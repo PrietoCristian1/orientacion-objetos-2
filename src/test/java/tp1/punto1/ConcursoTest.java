@@ -1,8 +1,7 @@
 package tp1.punto1;
 
 import org.junit.jupiter.api.Test;
-import tp1.punto1.Concurso;
-import tp1.punto1.Participante;
+
 
 import java.time.LocalDate;
 

@@ -3,10 +3,9 @@ package tp1.punto1;
 import java.util.Date;
 
 public class Participante {
-    private String nombre;
-    private String apellido;
+    private final String nombre;
+    private final String apellido;
     private int puntaje = 0;
-    private Date fechaDeInscripcion;
 
     public Participante(String nombre, String apellido){
         this.apellido = apellido;

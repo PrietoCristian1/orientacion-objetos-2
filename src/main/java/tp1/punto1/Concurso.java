@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Concurso {
-    private ArrayList<Participante> lista;
-    private LocalDate fechaInicioInscripcion;
-    private LocalDate fechaFinInscripcion;
+    private final ArrayList<Participante> lista;
+    private final LocalDate fechaInicioInscripcion;
+    private final LocalDate fechaFinInscripcion;
 
     public Concurso(LocalDate fechaInicioInscripcion, LocalDate fechaFinInscripcion) {
         this.lista = new ArrayList<>();
