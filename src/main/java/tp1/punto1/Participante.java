@@ -1,6 +1,5 @@
 package tp1.punto1;
 
-import java.util.Date;
 
 public class Participante {
     private final String nombre;
