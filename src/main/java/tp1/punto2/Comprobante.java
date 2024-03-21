@@ -19,13 +19,4 @@ public class Comprobante {
         return this.monto;
     }
 
-    @Override
-    public String toString() {
-        return "Comprobante{" +
-                "pedido=" + pedido +
-                ", tarjetaDeCredito=" + tarjetaDeCredito +
-                ", monto=" + monto +
-                ", fechaDeCobro=" + fechaDeCobro +
-                '}';
-    }
 }
