@@ -1,7 +1,5 @@
 package tp1.punto2;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class DispositivoElectronico {

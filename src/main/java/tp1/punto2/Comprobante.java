@@ -1,14 +1,12 @@
 package tp1.punto2;
 
-import org.apache.tools.ant.taskdefs.Tar;
-
 import java.util.Date;
 
 public class Comprobante {
-    private Pedido pedido;
-    private TarjetaDeCredito tarjetaDeCredito;
-    private Double monto = 0.0;
-    private Date fechaDeCobro;
+    private final Pedido pedido;
+    private final TarjetaDeCredito tarjetaDeCredito;
+    private final Double monto;
+    private final Date fechaDeCobro;
 
     public Comprobante(Pedido pedido, TarjetaDeCredito tarjetaDeCredito, Double monto, Date fechaDeCobro){
         this.fechaDeCobro = fechaDeCobro;
@@ -19,5 +17,15 @@ public class Comprobante {
 
     public Double monto(){
         return this.monto;
+    }
+
+    @Override
+    public String toString() {
+        return "Comprobante{" +
+                "pedido=" + pedido +
+                ", tarjetaDeCredito=" + tarjetaDeCredito +
+                ", monto=" + monto +
+                ", fechaDeCobro=" + fechaDeCobro +
+                '}';
     }
 }

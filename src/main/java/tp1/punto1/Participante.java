@@ -24,4 +24,5 @@ public class Participante {
     public int mostrarPuntaje(){
         return this.puntaje;
     }
+
 }
