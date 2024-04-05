@@ -1,8 +1,8 @@
-package tp1.punto2;
+package tp1.punto2.modelo;
 
-public class ComarcaPlus extends TarjetaDeCredito{
+public class ComarcaPlus extends TarjetaDeCredito {
 
-    public ComarcaPlus(String nombre){
+    public ComarcaPlus(String nombre) {
         super(nombre);
     }
 

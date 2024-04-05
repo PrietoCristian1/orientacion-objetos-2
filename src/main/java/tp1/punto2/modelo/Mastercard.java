@@ -1,4 +1,4 @@
-package tp1.punto2;
+package tp1.punto2.modelo;
 
 public class Mastercard extends TarjetaDeCredito {
     public Mastercard(String nombre) {
