@@ -13,7 +13,7 @@ public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
     }
 
     @Override
-    public String contenido() {
-        return this.registros.get(registros.size() - 1).trim();
+    public boolean comienzaCon(String comienzo) {
+        return this.registros.get(registros.size() - 1).startsWith(comienzo);
     }
 }

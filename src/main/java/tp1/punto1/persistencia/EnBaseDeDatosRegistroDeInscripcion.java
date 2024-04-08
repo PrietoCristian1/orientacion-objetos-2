@@ -35,8 +35,8 @@ public class EnBaseDeDatosRegistroDeInscripcion implements RegistroDeInscripcion
     }
 
     @Override
-    public String contenido() {
-        String resultado = null;
+    public boolean comienzaCon(String comienzo) {
+        String resultado = "";
         String sql = "SELECT fecha, idParticipante, idConcurso FROM registrodeinscripcion ORDER BY fecha DESC LIMIT 1";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -57,6 +57,6 @@ public class EnBaseDeDatosRegistroDeInscripcion implements RegistroDeInscripcion
             throw new RuntimeException("No se puedo persistir...", e);
         }
 
-        return resultado;
+        return resultado.startsWith(comienzo);
     }
 }

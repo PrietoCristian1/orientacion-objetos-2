@@ -23,16 +23,16 @@ public class EnDiscoRegistroDeInscripcion implements RegistroDeInscripcion {
     }
 
     @Override
-    public String contenido() {
+    public boolean comienzaCon(String comienzo) {
         try {
             //Lee todas las lineas del archivo en una lista
             List<String> lineas = Files.readAllLines(Paths.get(FILE_PATH));
             if (!lineas.isEmpty()) {
-                return lineas.get(lineas.size() - 1);
+                return lineas.get(lineas.size() - 1).startsWith(comienzo);
             }
         } catch (IOException e) {
             throw new RuntimeException("No se pudo persistir...", e);
         }
-        return "";
+        return false;
     }
 }

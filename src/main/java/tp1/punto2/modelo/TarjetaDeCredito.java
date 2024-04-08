@@ -2,7 +2,7 @@ package tp1.punto2.modelo;
 
 
 public class TarjetaDeCredito {
-    private String nombreTarjeta;
+    private final String nombreTarjeta;
 
     public TarjetaDeCredito(String nombreTarjeta) {
         this.nombreTarjeta = nombreTarjeta;
