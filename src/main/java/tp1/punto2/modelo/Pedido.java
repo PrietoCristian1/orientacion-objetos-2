@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Pedido {
     private final ArrayList<BebidaRecord> listaBebidasSeleccionadas;
     private final ArrayList<PlatoPrincipalRecord> listaPlatosSeleccionados;
+    private final double propina;
     private double precioTotalBebidas = 0;
     private double precioTotalPlatos = 0;
-    private double propina = 1;
 
     public Pedido(ArrayList<BebidaRecord> listaBebidasSeleccionadas, ArrayList<PlatoPrincipalRecord> listaPlatosSeleccionados,
                   double propina) {

@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 public class DispositivoElectronico {
 
-    public static final String FILE_PATH = "C:\\workspace\\orientacion-objetos-2\\src\\main\\java\\tp1\\punto2CostoComida.txt";
-    public static final String FORMATO_FECHA = "dd/MM/yyyy HH:mm";
     public static final String SEPARADOR = "||";
     public static final String SALTO_DE_LINEA = "\n";
     private final RegistroDeCosto registro;
