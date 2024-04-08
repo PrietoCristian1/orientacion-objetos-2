@@ -31,8 +31,8 @@ public class EnBaseDeDatosRegistroDeCosto implements RegistroDeCosto {
     }
 
     @Override
-    public String contenido() {
-        String resultado = null;
+    public boolean comienzaCon(String comienzo) {
+        boolean resultado = false;
         String sql = "SELECT fecha, monto FROM registrodecosto ORDER BY fecha DESC LIMIT 1";
 
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -46,7 +46,8 @@ public class EnBaseDeDatosRegistroDeCosto implements RegistroDeCosto {
                 double monto = rs.getDouble("monto");
 
                 // Construye el string de resultado
-                resultado = fecha + "||" + monto;
+                String contenido = fecha + "||" + monto;
+                resultado = contenido.startsWith(comienzo);
             }
         } catch (SQLException e) {
             // Maneja la excepción (puede imprimir el error o lanzar una nueva excepción)

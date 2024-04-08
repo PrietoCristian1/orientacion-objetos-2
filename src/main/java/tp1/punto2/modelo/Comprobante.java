@@ -1,21 +1,21 @@
 package tp1.punto2.modelo;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Comprobante {
     private final Pedido pedido;
     private final TarjetaDeCredito tarjetaDeCredito;
-    private final Double monto;
-    private final Date fechaDeCobro;
+    private final double monto;
+    private final LocalDateTime fechaDeCobro;
 
-    public Comprobante(Pedido pedido, TarjetaDeCredito tarjetaDeCredito, Double monto, Date fechaDeCobro) {
+    public Comprobante(Pedido pedido, TarjetaDeCredito tarjetaDeCredito, double monto, LocalDateTime fechaDeCobro) {
         this.fechaDeCobro = fechaDeCobro;
         this.monto = monto;
         this.pedido = pedido;
         this.tarjetaDeCredito = tarjetaDeCredito;
     }
 
-    public Double monto() {
+    public double monto() {
         return this.monto;
     }
 

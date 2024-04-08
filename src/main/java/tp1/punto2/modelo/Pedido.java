@@ -1,22 +1,24 @@
 package tp1.punto2.modelo;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Pedido {
     private final ArrayList<BebidaRecord> listaBebidasSeleccionadas;
     private final ArrayList<PlatoPrincipalRecord> listaPlatosSeleccionados;
     private double precioTotalBebidas = 0;
     private double precioTotalPlatos = 0;
+    private double propina = 1;
 
-    public Pedido(ArrayList<BebidaRecord> listaBebidasSeleccionadas, ArrayList<PlatoPrincipalRecord> listaPlatosSeleccionados) {
+    public Pedido(ArrayList<BebidaRecord> listaBebidasSeleccionadas, ArrayList<PlatoPrincipalRecord> listaPlatosSeleccionados,
+                  double propina) {
         this.listaBebidasSeleccionadas = listaBebidasSeleccionadas;
         this.listaPlatosSeleccionados = listaPlatosSeleccionados;
+        this.propina = propina;
         this.calcularPrecioBebidasYPlatos();
     }
 
     public double montoTotal() {
-        return this.precioTotalBebidas + this.precioTotalPlatos;
+        return (this.precioTotalBebidas + this.precioTotalPlatos) * propina;
     }
 
     public double montoPlatos() {
@@ -25,17 +27,6 @@ public class Pedido {
 
     public double montoBebidas() {
         return this.precioTotalBebidas;
-    }
-
-    public double aplicarPropina(Double costo) {
-        Random rand = new Random();
-        int randomNum = rand.nextInt(3);
-        double propina = switch (randomNum) {
-            case 0 -> 1.02;
-            case 1 -> 1.03;
-            default -> 1.05;
-        };
-        return costo * propina;
     }
 
     private void calcularPrecioBebidasYPlatos() {

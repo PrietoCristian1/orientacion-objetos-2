@@ -1,7 +1,6 @@
 package tp1.punto2.modelo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class DispositivoElectronico {
 
@@ -16,19 +15,10 @@ public class DispositivoElectronico {
     }
 
     public Comprobante realizarPago(Pedido pedido, TarjetaDeCredito tarjetaDeCredito) {
-        Double monto = pedido.aplicarPropina(tarjetaDeCredito.calcularDescuento(pedido));
-        String fechaYCostoDeComida = generarFechaDePago2() + SEPARADOR + monto + SALTO_DE_LINEA;
+        LocalDateTime fechaDePago = new ProveedorDeFechasReal().fecha();
+        double monto = tarjetaDeCredito.calcularDescuento(pedido);
+        String fechaYCostoDeComida = fechaDePago + SEPARADOR + monto + SALTO_DE_LINEA;
         this.registro.registrar(fechaYCostoDeComida);
-        return new Comprobante(pedido, tarjetaDeCredito, monto, new Date());
-    }
-
-    private String generarFechaDePago() {
-        Date fechaActual = new Date();
-        SimpleDateFormat formateador = new SimpleDateFormat(FORMATO_FECHA);
-        return formateador.format(fechaActual);
-    }
-
-    private String generarFechaDePago2() {
-        return "03/04/2024 19:55";
+        return new Comprobante(pedido, tarjetaDeCredito, monto, fechaDePago);
     }
 }

@@ -2,7 +2,6 @@ package tp1.punto2;
 
 import org.junit.jupiter.api.Test;
 import tp1.punto2.modelo.*;
-import tp1.punto2.persistencia.EnBaseDeDatosRegistroDeCosto;
 
 import java.util.ArrayList;
 
@@ -11,59 +10,59 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConsumoTest {
 
+    public static final double PROPINA_1 = 1.02;
+    public static final double PROPINA_2 = 1.05;
+    public static final double PROPINA_3 = 1.03;
+
     @Test
     public void costoTarjetaVisa() {
-        EnBaseDeDatosRegistroDeCosto registro = new EnBaseDeDatosRegistroDeCosto();
+        FakeRegistroDeCosto registro = new FakeRegistroDeCosto();
         TarjetaDeCredito tarjetaVisa = new Visa("Visa");
         DispositivoElectronico dispositivoElectronico = new DispositivoElectronico(registro);
-        Pedido pedido = this.generarPedido();
+        Pedido pedido = this.generarPedido(PROPINA_1);
         Comprobante comprobante = dispositivoElectronico.realizarPago(pedido, tarjetaVisa);
-        double montoMinimoEsperado = tarjetaVisa.calcularDescuento(pedido) * 1.02;
-        double montoMaximoEsperado = tarjetaVisa.calcularDescuento(pedido) * 1.05;
-        assertTrue(comprobante.monto() >= montoMinimoEsperado && comprobante.monto() <= montoMaximoEsperado);
-        assertEquals("03/04/2024 19:55" + "||" + comprobante.monto(), registro.contenido());
+
+        assertEquals(7080.0, comprobante.monto());
+        assertTrue(registro.comienzaCon("2024-10-15T20:25:45"));
     }
 
     @Test
     public void costoTarjetaMastercard() {
-        EnBaseDeDatosRegistroDeCosto registro = new EnBaseDeDatosRegistroDeCosto();
+        FakeRegistroDeCosto registro = new FakeRegistroDeCosto();
         TarjetaDeCredito tarjetaMastercard = new Mastercard("Mastercard");
         DispositivoElectronico dispositivoElectronico = new DispositivoElectronico(registro);
-        Pedido pedido = this.generarPedido();
+        Pedido pedido = this.generarPedido(PROPINA_2);
         Comprobante comprobante = dispositivoElectronico.realizarPago(pedido, tarjetaMastercard);
-        double montoMinimoEsperado = tarjetaMastercard.calcularDescuento(pedido) * 1.02;
-        double montoMaximoEsperado = tarjetaMastercard.calcularDescuento(pedido) * 1.05;
-        assertTrue(comprobante.monto() >= montoMinimoEsperado && comprobante.monto() <= montoMaximoEsperado);
-        assertEquals("03/04/2024 19:55" + "||" + comprobante.monto(), registro.contenido());
+
+        assertEquals(7250.0, comprobante.monto());
+        assertTrue(registro.comienzaCon("2024-10-15T20:25:45"));
     }
 
     @Test
     public void costoTarjetaComarcaPlus() {
-        EnBaseDeDatosRegistroDeCosto registro = new EnBaseDeDatosRegistroDeCosto();
+        FakeRegistroDeCosto registro = new FakeRegistroDeCosto();
         TarjetaDeCredito tarjetaComarcaPlus = new ComarcaPlus("Comarca Plus");
         DispositivoElectronico dispositivoElectronico = new DispositivoElectronico(registro);
-        Pedido pedido = this.generarPedido();
+        Pedido pedido = this.generarPedido(PROPINA_3);
         Comprobante comprobante = dispositivoElectronico.realizarPago(pedido, tarjetaComarcaPlus);
-        double montoMinimoEsperado = tarjetaComarcaPlus.calcularDescuento(pedido) * 1.02;
-        double montoMaximoEsperado = tarjetaComarcaPlus.calcularDescuento(pedido) * 1.05;
-        assertTrue(comprobante.monto() >= montoMinimoEsperado && comprobante.monto() <= montoMaximoEsperado);
-        assertEquals("03/04/2024 19:55" + "||" + comprobante.monto(), registro.contenido());
+
+        assertEquals(7065.8, comprobante.monto());
+        assertTrue(registro.comienzaCon("2024-10-15T20:25:45"));
     }
 
     @Test
     public void costoTarjetaViedma() {
-        EnBaseDeDatosRegistroDeCosto registro = new EnBaseDeDatosRegistroDeCosto();
+        FakeRegistroDeCosto registro = new FakeRegistroDeCosto();
         TarjetaDeCredito tarjetaViedma = new TarjetaDeCredito("Viedma");
         DispositivoElectronico dispositivoElectronico = new DispositivoElectronico(registro);
-        Pedido pedido = this.generarPedido();
+        Pedido pedido = this.generarPedido(PROPINA_1);
         Comprobante comprobante = dispositivoElectronico.realizarPago(pedido, tarjetaViedma);
-        double montoMinimoEsperado = tarjetaViedma.calcularDescuento(pedido) * 1.02;
-        double montoMaximoEsperado = tarjetaViedma.calcularDescuento(pedido) * 1.05;
-        assertTrue(comprobante.monto() >= montoMinimoEsperado && comprobante.monto() <= montoMaximoEsperado);
-        assertEquals("03/04/2024 19:55" + "||" + comprobante.monto(), registro.contenido());
+
+        assertEquals(7140.0, comprobante.monto());
+        assertTrue(registro.comienzaCon("2024-10-15T20:25:45"));
     }
 
-    private Pedido generarPedido() {
+    private Pedido generarPedido(double propina) {
         // Creacion de la lista de bebidas
         var bebida1 = new BebidaRecord("Quilmes", 3.0, 100);
         var bebida2 = new BebidaRecord("Manaos", 4.0, 200);
@@ -81,6 +80,6 @@ public class ConsumoTest {
         listaPlatos.add(plato1);
         listaPlatos.add(plato2);
         listaPlatos.add(plato3);
-        return new Pedido(listaBebidas, listaPlatos);
+        return new Pedido(listaBebidas, listaPlatos, propina);
     }
 }
