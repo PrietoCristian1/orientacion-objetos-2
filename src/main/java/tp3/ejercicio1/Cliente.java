@@ -11,23 +11,30 @@ public class Cliente {
         this.name = nombre;
     }
 
+
     public Object[] calcularDeudaYPuntosObtenidos() {
         Object[] resultado = new Object[2];
-        double total = 0;
+        resultado[0] = calcularDeuda();
+        resultado[1] = calcularPuntosObtenidos();
+        return resultado;
+    }
+
+    private double calcularPuntosObtenidos() {
         int puntosAlquilerFrecuente = 0;
         for (Alquiler alquiler : alquileres) {
-            total += alquiler.copia().libro().calcularCosto(alquiler.diasAlquilados());
-            // sumo puntos por alquiler
             puntosAlquilerFrecuente++;
-            // bonus por dos días de alquiler de un nuevo lanzamiento
             if ((alquiler.copia().libro().esNuevoLanzamiento())
                     && alquiler.diasAlquilados() > 1) {
                 puntosAlquilerFrecuente++;
             }
         }
-        resultado[0] = total;
-        resultado[1] = puntosAlquilerFrecuente;
-        return resultado;
+        return puntosAlquilerFrecuente;
+    }
+
+    private double calcularDeuda() {
+        return alquileres.stream()
+                .mapToDouble((p) -> p.copia().libro().calcularCosto(p.diasAlquilados()))
+                .sum();
     }
 
     public void alquilar(Alquiler rental) {

@@ -2,6 +2,7 @@ package tp1.punto3.punto2;
 
 import com.opencsv.exceptions.CsvValidationException;
 import org.junit.jupiter.api.Test;
+import tp3.ejercicio2.LectorCsv;
 import tp3.ejercicio2.Recaudacion;
 
 import java.io.IOException;
@@ -17,28 +18,28 @@ public class RecaudacionTest {
     public void testWhereGivenCompany() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "Facebook");
-        assertEquals(Recaudacion.where(options).size(), 7);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 7);
     }
 
     @Test
     public void testWhereGivenCity() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("city", "Tempe");
-        assertEquals(Recaudacion.where(options).size(), 3);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 3);
     }
 
     @Test
     public void testWhereGivenState() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("state", "CA");
-        assertEquals(Recaudacion.where(options).size(), 873);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 873);
     }
 
     @Test
     public void testWhereGivenRound() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("round", "a");
-        assertEquals(Recaudacion.where(options).size(), 582);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 582);
     }
 
     @Test
@@ -46,21 +47,21 @@ public class RecaudacionTest {
         Map<String, String> options = new HashMap<String, String>();
         options.put("round", "a");
         options.put("company_name", "Facebook");
-        assertEquals(Recaudacion.where(options).size(), 1);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 1);
     }
 
     @Test
     public void testWhereNotExists() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "NotFacebook");
-        assertEquals(Recaudacion.where(options).size(), 0);
+        assertEquals(new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).size(), 0);
     }
 
     @Test
     public void testWhereCorrectKeys() throws IOException, CsvValidationException {
         Map<String, String> options = new HashMap<String, String>();
         options.put("company_name", "Facebook");
-        Map<String, String> row = Recaudacion.where(options).get(0);
+        Map<String, String> row = new Recaudacion(new LectorCsv("src/main/resources/data.csv")).where(options).get(0);
 
         assertEquals(row.get("permalink"), "facebook");
         assertEquals(row.get("company_name"), "Facebook");
