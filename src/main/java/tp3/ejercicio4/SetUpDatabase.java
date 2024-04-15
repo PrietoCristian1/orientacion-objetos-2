@@ -4,7 +4,7 @@ import org.jdbi.v3.core.Jdbi;
 
 public class SetUpDatabase {
 
-    private Jdbi jdbi;
+    private final Jdbi jdbi;
 
     public SetUpDatabase(Jdbi jdbi) {
         this.jdbi = jdbi;
