@@ -5,10 +5,10 @@ import tp1.punto2.modelo.RegistroDeCosto;
 import java.sql.*;
 
 public class EnBaseDeDatosRegistroDeCosto implements RegistroDeCosto {
-    private static final String URL = "jdbc:mysql://localhost:3306/concursosypedidosdb";
+    private static final String URL = "jdbc:mysql://localhost:4000/concursosypedidosdb";
 
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "1234";
 
     @Override
     public void registrar(String registro) {

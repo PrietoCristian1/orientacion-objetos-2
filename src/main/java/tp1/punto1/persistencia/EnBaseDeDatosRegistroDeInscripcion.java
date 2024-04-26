@@ -5,10 +5,10 @@ import tp1.punto1.modelo.RegistroDeInscripcion;
 import java.sql.*;
 
 public class EnBaseDeDatosRegistroDeInscripcion implements RegistroDeInscripcion {
-    private static final String URL = "jdbc:mysql://localhost:3306/concursosypedidosdb";
+    private static final String URL = "jdbc:mysql://localhost:4000/concursosypedidosdb";
 
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "1234";
 
 
     @Override
@@ -56,7 +56,6 @@ public class EnBaseDeDatosRegistroDeInscripcion implements RegistroDeInscripcion
             // Maneja la excepción (puede imprimir el error o lanzar una nueva excepción)
             throw new RuntimeException("No se puedo persistir...", e);
         }
-
         return resultado.startsWith(comienzo);
     }
 }
